@@ -1,0 +1,27 @@
+<PaintScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        DrawInput:
+            id: painter
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            background_color: 1, 1, 1, 1
+
+        CustomButton:
+            size_hint_x: 1
+            size_hint_y: .1
+            text: 'Clear'
+            on_press:
+                root.clear(painter)
+
+        CustomButton:
+            size_hint_x: 1
+            size_hint_y: .1
+            text: 'Next'
+            on_press:
+                root.save(painter)

@@ -1,0 +1,65 @@
+<RegisterScreen>:
+    BoxLayout:
+        BackButton:
+            size_hint_x: .15
+            orientation: "horizontal"
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.transition.duration = 0.5
+                root.manager.current = "menu"
+
+        BoxLayout:
+            padding: 10
+            orientation: "vertical"
+            spacing: 20
+            canvas.before:
+                Color:
+                    rgba: 0.878, 0.878, 0.878, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Widget:
+            TextInput:
+                id: email
+                input_type: "text"
+                hint_text: "Email"
+                background_normal: ''
+                background_color: 1, 1, 1, 1
+                multiline: False
+                size_hint_y: None
+                size_hint_x: 1
+                height: 40
+                font_size: 20
+            TextInput:
+                id: password
+                password: True
+                hint_text: "Password"
+                background_normal: ''
+                background_color: 1, 1, 1, 1
+                multiline: False
+                size_hint_y: None
+                size_hint_x: 1
+                font_size: 20
+                height: 40
+            TextInput:
+                id: confirmation
+                password: True
+                hint_text: "Confirm Password"
+                background_normal: ''
+                background_color: 1, 1, 1, 1
+                multiline: False
+                size_hint_y: None
+                size_hint_x: 1
+                font_size: 20
+                height: 40
+            CustomButton:
+                text: "Register"
+                size_hint_y: None
+                height: 40
+                on_press:
+                    root.email = email.text
+                    root.password = password.text
+                    root.confirmation = confirmation.text
+                    root.register()
+            Widget:

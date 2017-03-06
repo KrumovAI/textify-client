@@ -1,0 +1,58 @@
+<MenuButton@Button>:
+    background_normal: ''
+    background_down: ''
+    color: 0, 0, 0, 1
+    background_color: 1, 1, 1, 1
+
+    on_press:
+        self.background_color = (0.9, 0.9, 0.9, 1)
+    on_release:
+        self.background_color = (1, 1, 1, 1)
+
+<Menu>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 1
+        id: menu
+
+        Label:
+            size_hint_y: .15
+            background_color: (1, 1, 1, 1)
+            text: "Textify"
+            font_name: "Ballpark"
+            font_size: 35
+        MenuButton:
+            size_hint_y: .15
+            text: "Text Recognition"
+            background_color: (1, 1, 1, 1)
+            on_press:
+                self.background_color = (1, 1, 1, 1)
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 0.5
+                root.manager.current = "text_recognition_screen"
+        MenuButton:
+            size_hint_y: .15
+            text: "Handwritten Text"
+            on_press:
+                self.background_color = (1, 1, 1, 1)
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 0.5
+                root.manager.current = "handwriting_recognition_screen"
+        MenuButton:
+            size_hint_y: .15
+            text: "Symbols"
+            on_press:
+                self.background_color = (1, 1, 1, 1)
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 0.5
+                root.manager.current = "symbols_screen"
+        BoxLayout:
+            id: authentication
+            spacing: 1
+            orientation: 'vertical'
+            size_hint_x: 1
+            size_hint_y: .3
+        MenuButton:
+            background_normal: ''
+            background_down: ''
+            background_color: 1, 1, 1, 1

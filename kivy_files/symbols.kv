@@ -1,0 +1,95 @@
+
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import listItemButton kivy.uix.listview.ListItemButton
+
+<SymbolButton@Button>:
+    size_hint_y: None
+    background_normal: ''
+    background_down: ''
+    height: 50
+    background_color: 1, 1, 1, 1
+    color: 0, 0, 0, 1
+    on_press:
+        self.background_color = (0.9, 0.9, 0.9, 1)
+        app.change_symbol(self.text)
+        app.manager.transition.direction = "left"
+        app.manager.transition.duration = 0.5
+        app.manager.current = "symbol_details_screen"
+    on_release:
+        self.background_color = (1, 1, 1, 1)
+
+<SymbolsScreen>:
+    BoxLayout:
+        BackButton:
+            size_hint_x: .15
+            orientation: "horizontal"
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.transition.duration = 0.5
+                root.manager.current = "menu"
+
+        ScrollView:
+            GridLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                cols: 1
+                height: self.minimum_height
+
+                SymbolButton:
+                    text: "A"
+                SymbolButton:
+                    text: "B"
+                SymbolButton:
+                    text: "C"
+                SymbolButton:
+                    text: "D"
+                SymbolButton:
+                    text: "E"
+                SymbolButton:
+                    text: "F"
+                SymbolButton:
+                    text: "G"
+                SymbolButton:
+                    text: "H"
+                SymbolButton:
+                    text: "I"
+                SymbolButton:
+                    text: "J"
+                SymbolButton:
+                    text: "K"
+                SymbolButton:
+                    text: "L"
+                SymbolButton:
+                    text: "M"
+                SymbolButton:
+                    text: "N"
+                SymbolButton:
+                    text: "O"
+                SymbolButton:
+                    text: "P"
+                SymbolButton:
+                    text: "Q"
+                SymbolButton:
+                    text: "R"
+                SymbolButton:
+                    text: "S"
+                SymbolButton:
+                    text: "T"
+                SymbolButton:
+                    text: "U"
+                SymbolButton:
+                    text: "V"
+                SymbolButton:
+                    text: "W"
+                SymbolButton:
+                    text: "X"
+                SymbolButton:
+                    text: "Y"
+                SymbolButton:
+                    text: "Z"
+                CustomButton:
+                    text: "Train"
+                    height: 50
+                    size_hint_y: None
+                    on_press:
+                        root.train()

@@ -1,0 +1,84 @@
+<BackButton@Button>:
+    background_normal: ''
+    background_down: ''
+    color: 0.6, 0.6, 0.6, 1
+    background_color: 0.016, 0.016, 0.016, 1
+    font_size: 60
+    text: '<'
+    font_name: 'DFPOP'
+    on_press:
+        self.background_color = (0, 0, 0, 1)
+        self.color = (1, 1, 1, 1)
+    on_release:
+        self.background_color = (0.016, 0.016, 0.016, 1)
+        self.color = (0.6, 0.6, 0.6, 1)
+
+<CustomButton@Button>:
+    background_normal: ''
+    background_down: ''
+    bold: True
+    color: 1, 1, 1, 1
+    background_color: 0.267, 0.718, 0.545, 1
+
+<LoadingPopup>:
+    size_hint: .5, .5
+    auto_dismiss: False
+    title: "Loading"
+    background_color: (1, 1, 1, 1)
+    color: (0, 0, 0, 1)
+
+<TextRecognitionScreen>:
+    BoxLayout:
+        BackButton:
+            size_hint_x: .15
+            orientation: "horizontal"
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.transition.duration = 0.5
+                root.manager.current = "menu"
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 3
+            padding: 10
+            canvas.before:
+                Color:
+                    rgba: 0.973, 0.973, 0.973, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            TextInput:
+                id: result
+                text: root.result
+                multiline: True
+                background_normal: ''
+                background_active: ''
+                input_type: "text"
+                keyboard_suggestions: True
+            CustomButton:
+                text: "Pictures"
+                size_hint_y: .10
+                on_release:
+                    root.show_load()
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+
+        FileChooserIconView:
+            id: filechooser
+            filters: ['*.jpg', '*.png']
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
